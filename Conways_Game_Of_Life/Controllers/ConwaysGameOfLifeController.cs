@@ -19,7 +19,7 @@ namespace Conways_Game_Of_Life.Controllers
             _logger = logger;
         }
         [HttpPost("upload")]
-        public IActionResult UploadBoard([FromBody] Board board)
+        public IActionResult UploadBoard([FromBody] BoardIn board)
         {
             var id = _boardRepository.SaveBoard(board);
             return Ok(new { Id = id });
@@ -32,7 +32,7 @@ namespace Conways_Game_Of_Life.Controllers
             if (board == null) return NotFound();
 
             var nextBoard = _conwaysGameOfLifeService.GetNextState(board);
-            return Ok(nextBoard);
+            return Ok(_boardRepository.GetBoardOut(nextBoard));
         }
 
         [HttpGet("{id}/steps/{steps}")]
@@ -42,7 +42,7 @@ namespace Conways_Game_Of_Life.Controllers
             if (board == null) return NotFound();
 
             var states = _conwaysGameOfLifeService.GetStates(board, steps);
-            return Ok(states);
+            return Ok(states.Select(x => _boardRepository.GetBoardOut(x)));
         }
 
         [HttpGet("{id}/final/{maxSteps}")]
@@ -54,7 +54,7 @@ namespace Conways_Game_Of_Life.Controllers
             try
             {
                 var finalBoard = _conwaysGameOfLifeService.GetFinalState(board, maxSteps);
-                return Ok(finalBoard);
+                return Ok(_boardRepository.GetBoardOut(finalBoard));
             }
             catch (InvalidOperationException ex)
             {
