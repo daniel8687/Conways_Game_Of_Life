@@ -10,6 +10,7 @@ namespace Conways_Game_Of_Life.Services
         {
             var nextBoard = new Board
             {
+                Id = board.Id,
                 Rows = board.Rows,
                 Columns = board.Columns,
                 Grid = new bool[board.Rows, board.Columns]
@@ -21,7 +22,7 @@ namespace Conways_Game_Of_Life.Services
                 {
                     int liveNeighbors = CountLiveNeighbors(board, row, col);
 
-                    if (board.GridEnumerable[row][col])
+                    if (board.Grid[row, col])
                     {
                         // Rule 1 & 2: A live cell with 2 or 3 neighbors survives, otherwise it dies
                         nextBoard.Grid[row, col] = liveNeighbors == 2 || liveNeighbors == 3;

@@ -166,11 +166,11 @@ namespace Conways_Game_Of_Life_Tests
             {
                 Rows = 3,
                 Columns = 3,
-                GridEnumerable = new List<List<bool>>()
+                Grid = new bool[3, 3]
                 {
-                    new() { false, true, false },
-                    new() { false, true, false },
-                    new() { false, true, false }
+                    { false, true, false },
+                    { false, true, false },
+                    { false, true, false }
                 }
             };
 
@@ -178,14 +178,14 @@ namespace Conways_Game_Of_Life_Tests
             var finalBoard = _conwaysGameOfLifeService.GetFinalState(board, 10);
 
             // The final state should be the same as the starting state after every two steps (blinker oscillation)
-            var expectedStableState = new List<List<bool>>()
+            var expectedStableState = new bool[3, 3]
             {
-                new() { false, true, false },
-                new() { false, true, false },
-                new() { false, true, false }
+                { false, true, false },
+                { false, true, false },
+                { false, true, false }
             };
 
-            Assert.Equal(expectedStableState, finalBoard.GridEnumerable);
+            Assert.Equal(expectedStableState, finalBoard.Grid);
         }
 
         [Fact]

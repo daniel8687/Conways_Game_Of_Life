@@ -4,7 +4,8 @@ namespace Conways_Game_Of_Life.Interfaces
 {
     public interface IBoardRepository
     {
-        Guid SaveBoard(Board board);
+        Guid SaveBoard(BoardIn board);
         Board GetBoard(Guid id);
+        BoardOut GetBoardOut(Board board);
     }
 }
