@@ -2,7 +2,7 @@
 Conway's Game of Life
 
 # REST API End Points
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/danielmeridaniceincontact/Conways_Game_Of_Life/blob/v1/Resources/2024-09-27_11-18-58.jpg?raw=true)
 
 # Run Docker Image
 go to ..\Conways_Game_Of_Life\Conways_Game_Of_Life
